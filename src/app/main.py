@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -12,15 +13,18 @@ from app.cadastros.router import router as cadastros_router
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(planos_router)
 app.include_router(modalidades_router)
 app.include_router(cadastros_router)
+
 
 @app.get("/")
 def inicio():
